@@ -79,16 +79,14 @@ git clone git@github.com:omathcampos/CrudBasico.git
 
 ### 2. Instale as Dependências
 
-O projeto utiliza o Gorilla Mux como roteador. Para instalar a dependência, execute:
+Em vez de instalar as dependências manualmente, use o comando abaixo para garantir que todas as dependências necessárias sejam baixadas:
 
-```bash
-go get -u github.com/gorilla/mux
+go mod tidy
 
 ### 3. Configure o Banco de Dados
 
 Crie um banco de dados MySQL chamado `devbook` e configure os detalhes da conexão no arquivo `bancoDeDados.go`.
 
-```go
 stringConexaoSQL := "root@/devbook?charset=utf8&parseTime=True&loc=Local"
 
 ### 4. Execute o Projeto
