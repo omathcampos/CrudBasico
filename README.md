@@ -72,9 +72,9 @@ Este é um projeto simples que implementa um CRUD (Create, Read, Update, Delete)
 
 ## 🔧 Instalação
 
+```bash
 ### 1. Clone o Repositório
 
-```bash
 git clone git@github.com:omathcampos/CrudBasico.git
 
 ### 2. Instale as Dependências
