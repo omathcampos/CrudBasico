@@ -95,6 +95,5 @@ stringConexaoSQL := "root@/devbook?charset=utf8&parseTime=True&loc=Local"
 
 Para rodar o servidor, basta executar:
 
-```bash
 go run main.go
 
