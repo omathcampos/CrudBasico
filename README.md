@@ -1,91 +1,100 @@
-CRUD em Go 🛠️
+# 🚀 Projeto CRUD de Usuários em Go
 
-Este projeto é um exemplo de implementação de um CRUD (Create, Read, Update, Delete) utilizando a linguagem Go, o framework Gorilla Mux para roteamento e MySQL como banco de dados. Ele foi desenvolvido como parte do curso "Aprenda Golang do Zero! Desenvolva uma APLICAÇÃO COMPLETA!" ministrado por Otavio Gallego, com foco no aprendizado de Go e no desenvolvimento de aplicações completas.
+Este é um projeto simples que implementa um CRUD (Create, Read, Update, Delete) para gerenciamento de usuários utilizando Go e MySQL. O projeto foi incentivado e feito durante o curso "Aprenda Golang do Zero! Desenvolva uma APLICAÇÃO COMPLETA!" do Otávio Gallego.
 
-🌟 Estrutura do Projeto
+## 🧑‍💻 Funcionalidades
 
-main.go: Arquivo principal que inicia o servidor e define as rotas.
+- ✨ **Criar usuário**: Cadastrar um novo usuário no banco de dados.
+- 🔍 **Buscar usuários**: Retornar a lista de todos os usuários cadastrados.
+- 👤 **Buscar usuário por ID**: Buscar um usuário específico pelo seu ID.
+- ✏️ **Atualizar usuário**: Alterar as informações de um usuário existente.
+- ❌ **Deletar usuário**: Deletar um usuário pelo seu ID.
 
-servidor/: Contém as funções responsáveis por manipular as requisições HTTP.
+## 🛠️ Tecnologias Utilizadas
 
-bancoDeDados/: Contém a lógica de conexão com o banco de dados.
+- **Go**: Linguagem de programação principal para o desenvolvimento da aplicação.
+- **MySQL**: Banco de dados utilizado para armazenar os dados dos usuários.
+- **Gorilla Mux**: Biblioteca para roteamento de HTTP em Go.
+- **JSON**: Formato para troca de dados entre a API e o cliente.
 
-✅ Pré-requisitos
+## 📂 Estrutura do Projeto
 
-Certifique-se de ter instalado em sua máquina:
+- `main.go`: Arquivo principal onde o servidor HTTP é configurado e as rotas da API são definidas.
+- `servidor/servidor.go`: Arquivo contendo as funções responsáveis pelas operações CRUD.
+- `bancoDeDados/bancoDeDados.go`: Arquivo com a função de conexão com o banco de dados MySQL.
 
-Go (versão 1.16 ou superior)
+## 🌍 Endpoints da API
 
-MySQL
+### 1. 🆕 Criar Usuário
 
-Gorilla Mux
+- **Método**: POST
+- **Endpoint**: `/cadastrar-usuario`
+- **Descrição**: Cria um novo usuário no banco de dados.
+- **Body (JSON)**:
+  ```json
+  {
+    "nome": "Nome do Usuário",
+    "email": "email@dominio.com"
+  }
 
-MySQL Driver para Go
+### 2. 📜 Buscar Todos os Usuários
 
-🗂️ Configuração do Banco de Dados
+- **Método**: GET
+- **Endpoint**: `/buscar-usuarios`
+- **Descrição**: Retorna uma lista de todos os usuários cadastrados.
 
-Crie um banco de dados chamado devbook no MySQL e adicione a tabela usuarios com a seguinte estrutura:
+### 3. 🔍 Buscar Usuário por ID
 
-CREATE TABLE usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL
-);
+- **Método**: GET
+- **Endpoint**: `/buscar-usuario/{id}`
+- **Descrição**: Retorna os dados de um usuário específico pelo ID.
+- **Parâmetro**: `{id}` - ID do usuário.
 
-Certifique-se de que o usuário e senha do banco de dados estão corretos no arquivo bancoDeDados/bancoDeDados.go. A string de conexão está configurada como:
+### 4. ✏️ Atualizar Usuário
 
-"root@/devbook?charset=utf8&parseTime=True&loc=Local"
+- **Método**: PUT
+- **Endpoint**: `/alterar-usuario/{id}`
+- **Descrição**: Atualiza as informações de um usuário específico.
+- **Parâmetro**: `{id}` - ID do usuário.
+- **Body (JSON)**:
+  ```json
+  {
+    "nome": "Novo Nome",
+    "email": "novoemail@dominio.com"
+  }
 
-🚀 Como Executar
+### 5. ❌ Deletar Usuário
 
-Clone este repositório:
+- **Método**: DELETE
+- **Endpoint**: `/deletar-usuario/{id}`
+- **Descrição**: Deleta um usuário pelo ID.
+- **Parâmetro**: `{id}` - ID do usuário.
 
-git clone git@github.com:omathcampos/CrudBasico.git
+## 🔧 Instalação
 
-Navegue até o diretório do projeto:
+### 1. Clone o Repositório
 
-cd CrudBasico
+```bash
+git clone https://github.com/seu-usuario/nome-do-repositorio.git
 
-Instale as dependências:
+### 2. Instale as Dependências
 
-go mod tidy
+O projeto utiliza o Gorilla Mux como roteador. Para instalar a dependência, execute:
 
-Inicie o servidor:
+```bash
+go get -u github.com/gorilla/mux
 
+### 3. Configure o Banco de Dados
+
+Crie um banco de dados MySQL chamado `devbook` e configure os detalhes da conexão no arquivo `bancoDeDados.go`.
+
+```go
+stringConexaoSQL := "root@/devbook?charset=utf8&parseTime=True&loc=Local"
+
+### 4. Execute o Projeto
+
+Para rodar o servidor, basta executar:
+
+```bash
 go run main.go
 
-O servidor será iniciado na porta 8080.
-
-🌐 Rotas da API
-
-POST /cadastrar-usuario ➡️ Cadastra um novo usuário no banco de dados.
-
-Corpo da requisição (JSON):
-
-{
-  "nome": "Nome do Usuário",
-  "email": "email@exemplo.com"
-}
-
-GET /buscar-usuarios ➡️ Retorna uma lista de todos os usuários.
-
-GET /buscar-usuario/{id} ➡️ Retorna os dados de um usuário específico.
-
-PUT /alterar-usuario/{id} ➡️ Atualiza os dados de um usuário.
-
-Corpo da requisição (JSON):
-
-{
-  "nome": "Novo Nome",
-  "email": "novoemail@exemplo.com"
-}
-
-DELETE /deletar-usuario/{id} ➡️ Remove um usuário do banco de dados.
-
-📦 Dependências
-
-As principais bibliotecas utilizadas neste projeto são:
-
-Gorilla Mux: Framework para roteamento.
-
-MySQL Driver: Driver para conexão com MySQL.
